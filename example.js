@@ -15,8 +15,6 @@ app.use(cors())
 const options = { url: `https://api.authentication.maximemoreillon.com/user_from_jwt` }
 app.use(auth(options))
 
-
 app.get('/', (req, res) => res.send(res.locals.user) )
-
 
 app.listen(EXPRESS_PORT, () => console.log(`[Express] App listening on ${EXPRESS_PORT}`) )
