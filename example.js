@@ -18,16 +18,12 @@ const EXPRESS_PORT = process.env.EXPRESS_PORT || 80
 const app = express()
 app.use(bodyParser.json())
 app.use(cors())
-app.use(auth({lax:true}))
+app.use(auth())
 
 
 
 app.get('/', (req, res) => {
-  res.send({
-    application_name: 'User manager',
-    version: pjson.version,
-    author: pjson.author
-  })
+  res.send(res.locals.user)
 })
 
 

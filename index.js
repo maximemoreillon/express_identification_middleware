@@ -41,7 +41,7 @@ const retrieve_jwt = (req, res) => {
 }
 
 module.exports = (opt) => {
-  
+
   const options = opt || {}
 
    return (req, res, next) => {
@@ -59,11 +59,8 @@ module.exports = (opt) => {
         return axios.get(url, {params: {jwt} } )
       })
       .then( ({data}) => {
-
         // passing the user object to the route using res.locals
         res.locals.user = data
-
-        console.log(data)
 
         // allow to request to proceed
         next()
