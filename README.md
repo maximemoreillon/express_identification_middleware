@@ -13,5 +13,5 @@ const auth = require('@moreillon/express_identification_middleware')
 const options = { url: 'AUTHENTICATION_API_URL' }
 
 // Register the middleware
-app.use(group_auth(options))
+app.use(auth(options))
 ```
