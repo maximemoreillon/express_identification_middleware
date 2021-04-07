@@ -26,7 +26,7 @@ const retrieve_jwt = (req, res) => {
     // Try to get JWT from cookies
     if(!jwt) {
       let cookies = new Cookies(req, res)
-      jwt = cookies.get('jwt')
+      jwt = cookies.get('jwt') || cookies.get('token')
     }
 
     if(!jwt) {
@@ -54,9 +54,14 @@ module.exports = (opt) => {
         // Send the token to the authentication api for verification
 
         const url = options.url
-          || `${process.env.AUTHENTICATION_API_URL}/user_from_jwt`
 
-        return axios.get(url, {params: {jwt} } )
+        const axios_options = {
+          headers: {
+            'Authorization': `Bearer ${jwt}`
+          }
+        }
+
+        return axios.get(url, axios_options )
       })
       .then( ({data}) => {
         // passing the user object to the route using res.locals

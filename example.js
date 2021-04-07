@@ -12,7 +12,7 @@ const app = express()
 app.use(bodyParser.json())
 app.use(cors())
 
-const options = { url: `https://api.authentication.maximemoreillon.com/user_from_jwt` }
+const options = { url: `https://api.authentication.maximemoreillon.com/whoami` }
 app.use(auth(options))
 
 app.get('/', (req, res) => res.send(res.locals.user) )
