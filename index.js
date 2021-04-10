@@ -1,10 +1,5 @@
 const axios = require('axios')
 const Cookies = require('cookies')
-const dotenv = require('dotenv')
-
-dotenv.config()
-
-
 
 
 const retrieve_jwt = (req, res) => {
