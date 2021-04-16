@@ -48,6 +48,8 @@ module.exports = (opt) => {
       .then(jwt => {
         // Send the token to the authentication api for verification
 
+        res.locals.jwt = jwt
+
         const url = options.url
 
         const axios_options = {
