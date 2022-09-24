@@ -1,18 +1,14 @@
 const express = require('express')
 const cors = require('cors')
-const dotenv = require('dotenv')
-const bodyParser = require('body-parser')
 const auth = require('./index.js')
-
-dotenv.config()
 
 const EXPRESS_PORT = 7070
 
 const app = express()
-app.use(bodyParser.json())
+app.use(express.json())
 app.use(cors())
 
-const options = { url: `https://api.authentication.maximemoreillon.com/whoami` }
+const options = { url: `https://api.users.maximemoreillon.com/v2/users/self` }
 app.use(auth(options))
 
 app.get('/', (req, res) => res.send(res.locals.user) )

@@ -1,8 +1,9 @@
-const axios = require('axios')
-const Cookies = require('cookies')
+import axios from 'axios'
+import Cookies from 'cookies'
+import { Request, Response, NextFunction } from 'express'
 
 
-const retrieve_jwt = (req, res) => new Promise( (resolve, reject) => {
+const retrieve_jwt = (req: Request, res: Response) => new Promise( (resolve, reject) => {
 
   // Retrieving the token from either cookies or authorization header
   // Did not need to be a promise
@@ -10,10 +11,8 @@ const retrieve_jwt = (req, res) => new Promise( (resolve, reject) => {
   let jwt
 
   // See if jwt available from authorization header
-  if(!jwt){
-    if(('authorization' in req.headers)) {
-      jwt = req.headers.authorization.split(" ")[1]
-    }
+  if (!jwt && req?.headers?.authorization){
+    jwt = req?.headers?.authorization.split(" ")[1]
   }
 
   // Try to get JWT from cookies
@@ -36,7 +35,7 @@ const retrieve_jwt = (req, res) => new Promise( (resolve, reject) => {
 
 
 
-module.exports = (opt) => (req, res, next) => {
+export default (opt) => (req: Request, res: Response, next: NextFunction) => {
 
   const options = opt || {}
 
