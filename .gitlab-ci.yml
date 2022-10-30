@@ -9,6 +9,4 @@ publish:
     # Auth and publish to NPM
     - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
   script:
-    - npm install
-    - npm run build
     - npm publish
