@@ -32,7 +32,8 @@ const retrieve_jwt = (req: Request, res: Response) =>
     resolve(jwt)
   })
 
-export default (options: any = {}) =>
+const middleware =
+  (options: any = {}) =>
   (req: Request, res: Response, next: NextFunction) => {
     // Retrieves user information using the JWT provided by the user
 
@@ -65,3 +66,5 @@ export default (options: any = {}) =>
         else return res.status(403).send(error)
       })
   }
+
+export = middleware
