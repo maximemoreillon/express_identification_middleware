@@ -7,11 +7,13 @@ const retrieve_jwt = (req: Request, res: Response) =>
     // Retrieving the token from either cookies or authorization header
     // NOTE: Did not need to be a promise
 
+    let { query, headers } = req
+
     let jwt
 
     // See if jwt available from authorization header
-    if (!jwt && req?.headers?.authorization) {
-      jwt = req?.headers?.authorization.split(" ")[1]
+    if (!jwt && headers?.authorization) {
+      jwt = headers?.authorization.split(" ")[1]
     }
 
     // Try to get JWT from cookies
@@ -22,16 +24,16 @@ const retrieve_jwt = (req: Request, res: Response) =>
 
     // Try to get the JWT from query parameters
     if (!jwt) {
-      jwt = req.query.jwt || req.query.token
+      jwt = query.jwt || query.token
     }
 
-    if (!jwt) {
+    if (!jwt)
       return reject(`JWT not found in either cookies or authorization header`)
-    }
 
     resolve(jwt)
   })
 
+// NOTE: Middleware itself cannot be async
 const middleware =
   (options: any = {}) =>
   (req: Request, res: Response, next: NextFunction) => {
