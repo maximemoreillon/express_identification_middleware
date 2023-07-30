@@ -1,17 +1,24 @@
 # Express identification middleware
 
+An expres middlewware to identify users from their HTTP requests.
 
 ## Usage
 
-```
-// Crerate an express app
-const app = require('express')()
+```typescript
+import express from "express"
+import auth from "@moreillon/express_identification_middleware"
 
-// Import the middleware
-const auth = require('@moreillon/express_identification_middleware')
+const app = express()
+const authOptions = { url: `https://api.users.maximemoreillon.com/users/self` }
 
-const options = { url: 'AUTHENTICATION_API_URL' }
-
-// Register the middleware
 app.use(auth(options))
+
+app.listen(8080, () => {
+  console.log(`Express server started`)
+})
 ```
+
+## Options
+
+- url: The URL of the identification route of the authentication API
+- lax: Boolean, set to true to allow unidentified users
