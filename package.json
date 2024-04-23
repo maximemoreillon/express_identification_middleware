@@ -2,7 +2,8 @@
   "name": "@moreillon/express_identification_middleware",
   "version": "1.3.6",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "dev": "nodemon example.ts",
     "build": "tsc"
