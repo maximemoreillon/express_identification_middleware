@@ -27,8 +27,7 @@ const retrieve_jwt = (req: Request, res: Response) =>
       jwt = query.jwt || query.token
     }
 
-    if (!jwt)
-      return reject(`JWT not found in either cookies or authorization header`)
+    if (!jwt) return reject(`Missing JWT`)
 
     resolve(jwt)
   })
